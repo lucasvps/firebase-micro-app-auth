@@ -223,7 +223,7 @@ class FirebaseAuthDatasource implements IAuthRepository {
 
       await user.updatePassword(newPassword);
       return Right(RequestSuccess());
-    } catch (e, s) {
+    } catch (e) {
       return const Left(AuthCustomException(
         message: "Erro ao redefinir a senha.",
       ));
