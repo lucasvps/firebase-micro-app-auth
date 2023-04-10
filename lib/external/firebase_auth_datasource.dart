@@ -79,6 +79,7 @@ class FirebaseAuthDatasource implements IAuthRepository {
         return const Left(AuthCustomException());
       }
     } on FirebaseAuthException catch (e) {
+      log(e.toString());
       if (e.code == 'user-not-found') {
         return const Left(
           AuthCustomException(
@@ -148,6 +149,7 @@ class FirebaseAuthDatasource implements IAuthRepository {
         return const Left(AuthCustomException());
       }
     } on FirebaseAuthException catch (e) {
+      log(e.toString());
       if (e.code == 'user-not-found') {
         return const Left(
           AuthCustomException(
@@ -183,8 +185,10 @@ class FirebaseAuthDatasource implements IAuthRepository {
 
   @override
   Future<Either<AuthCustomException, RegisterSuccess>>
-      registerWithEmailAndPassword(
-          {required String email, required String password}) async {
+      registerWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
     try {
       await firebaseAuthInstace.createUserWithEmailAndPassword(
         email: email,
@@ -197,6 +201,7 @@ class FirebaseAuthDatasource implements IAuthRepository {
 
       return Right(RegisterSuccess());
     } on FirebaseAuthException catch (e) {
+      log(e.toString());
       if (e.code == 'email-already-in-use') {
         return const Left(
           AuthCustomException(
@@ -209,6 +214,7 @@ class FirebaseAuthDatasource implements IAuthRepository {
         );
       }
     } catch (e) {
+      log(e.toString());
       return const Left(
         AuthCustomException(),
       );
@@ -224,6 +230,7 @@ class FirebaseAuthDatasource implements IAuthRepository {
       await user.updatePassword(newPassword);
       return Right(RequestSuccess());
     } catch (e) {
+      log(e.toString());
       return const Left(AuthCustomException(
         message: "Erro ao redefinir a senha.",
       ));
@@ -245,6 +252,7 @@ class FirebaseAuthDatasource implements IAuthRepository {
           return Right(RequestSuccess());
         } on FirebaseAuthException catch (e) {
           log(e.toString());
+          log(e.toString());
           if (e.code == 'auth/invalid-email' || e.code == 'invalid-email') {
             return const Left(
               AuthCustomException(
@@ -264,6 +272,7 @@ class FirebaseAuthDatasource implements IAuthRepository {
             );
           }
         } catch (e) {
+          log(e.toString());
           return const Left(
             AuthCustomException(),
           );
@@ -296,13 +305,14 @@ class FirebaseAuthDatasource implements IAuthRepository {
 
         return Right(RequestSuccess());
       } on FirebaseAuthException catch (e) {
-        if (e.code == 'firebase_auth/requires-recent-login' ||
-            e.code == 'requires-recent-login' &&
-                e.code == 'auth/requires-recent-login') {
+        log(e.toString());
+        if (e.code == 'firebasefirebaseAuthInstace/requires-recent-login' ||
+            e.code == 'requires-recent-login' ||
+            e.code == 'auth/requires-recent-login') {
           return const Left(
             AuthCustomException(
               message:
-                  "É necessário que você saia e faça login novamente para poder deletar sua conta.",
+                  "É necessário que você esteja recentemente logado para deletar sua conta. Por favor saia e faça login novamente para realizar a ação.",
             ),
           );
         }
@@ -310,6 +320,7 @@ class FirebaseAuthDatasource implements IAuthRepository {
           AuthCustomException(),
         );
       } catch (e) {
+        log(e.toString());
         return const Left(
           AuthCustomException(),
         );
