@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import '../../../utils/success/success_models.dart';
 import '../../external/i_auth_repository.dart';
@@ -10,9 +13,13 @@ class LoginWithGoogleUsecase implements ILoginWithGoogleUsecase {
   Future<Either<AuthCustomException, LoginSuccess>> call() async {
     try {
       return await GetIt.I.get<IAuthRepository>().signInWithGoogle();
-    } on AuthCustomException catch (e) {
+    } on AuthCustomException catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
       return Left(e);
-    } catch (e) {
+    } catch (e, s) {
+      debugPrint(e.toString());
+      debugPrint(s.toString());
       return const Left(AuthCustomException());
     }
   }

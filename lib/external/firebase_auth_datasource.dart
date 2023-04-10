@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:dartz/dartz.dart';
@@ -76,11 +77,11 @@ class FirebaseAuthDatasource implements IAuthRepository {
 
         return Right(LoginSuccess());
       } else {
-        log("user == null");
+        debugPrint("user == null");
         return const Left(AuthCustomException());
       }
     } on FirebaseAuthException catch (e) {
-      log(e.toString());
+      debugPrint(e.toString());
       if (e.code == 'user-not-found') {
         return const Left(
           AuthCustomException(
@@ -95,7 +96,7 @@ class FirebaseAuthDatasource implements IAuthRepository {
         return const Left(AuthCustomException());
       }
     } catch (e) {
-      log(e.toString());
+      debugPrint(e.toString());
       return const Left(AuthCustomException());
     }
   }
