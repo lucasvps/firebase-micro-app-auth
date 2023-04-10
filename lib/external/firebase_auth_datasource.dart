@@ -76,6 +76,7 @@ class FirebaseAuthDatasource implements IAuthRepository {
 
         return Right(LoginSuccess());
       } else {
+        log("user == null");
         return const Left(AuthCustomException());
       }
     } on FirebaseAuthException catch (e) {
