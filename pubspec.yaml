@@ -1,10 +1,10 @@
 name: micro_app_auth
 description: A new Flutter package project.
-version: 0.0.1
+version: 0.0.2
 homepage:
 
 environment:
-  sdk: ">=2.18.2 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
@@ -12,13 +12,13 @@ dependencies:
     sdk: flutter
 
   ##firebase
-  firebase_auth: 4.4.0
+  firebase_auth: 4.6.3
 
-  google_sign_in: 6.0.2
-  sign_in_with_apple: 4.3.0
+  google_sign_in: 6.1.4
+  sign_in_with_apple: 5.0.0
 
-  shared_preferences: 2.1.0
-  get_it: 7.2.0
+  shared_preferences: 2.2.0
+  get_it: 7.6.0
   mocktail: 0.3.0
   dartz: 0.10.1
   equatable: 2.0.5
@@ -29,7 +29,4 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.0
 
-
 flutter:
-
- 
