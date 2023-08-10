@@ -18,7 +18,7 @@ jobs:
 
       # Instala as dependências do Dart e Flutter
       - name: Install dependencies
-        run: pub get
+        run: dart pub get
 
       # Roda o Dart Analyzer para verificar problemas
       - name: Run Dart Analyzer
