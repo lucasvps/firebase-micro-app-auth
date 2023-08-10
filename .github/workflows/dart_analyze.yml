@@ -20,13 +20,13 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
-      # Roda o Dart Analyzer para verificar problemas
-      - name: Run Dart Analyzer
-        run: dart analyze
-
       # Tentativa de correção automática de problemas
       - name: Auto-fix issues
         run: dart fix --apply
+
+      # Roda o Dart Analyzer para verificar se ainda existem problemas
+      - name: Run Dart Analyzer
+        run: dart analyze
 
       # Faz commit e push das correções, se houver
       - name: Commit fixes
