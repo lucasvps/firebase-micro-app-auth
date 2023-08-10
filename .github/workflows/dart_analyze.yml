@@ -6,6 +6,9 @@ jobs:
   analyze_and_fix:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write # To push a branch
+
     steps:
       # Faz o checkout do código do repositório
       - uses: actions/checkout@v2
