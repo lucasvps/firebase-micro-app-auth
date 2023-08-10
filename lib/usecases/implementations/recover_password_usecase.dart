@@ -14,7 +14,7 @@ class RecoverPasswordUsecase implements IRecoverPasswordUsecase {
     required String email,
   }) async {
     if (!EmailValidator.validate(email)) {
-      return Left(
+      return const Left(
         AuthCustomException(
           message: 'Este email é inválido',
         ),
@@ -26,7 +26,7 @@ class RecoverPasswordUsecase implements IRecoverPasswordUsecase {
     } on AuthCustomException catch (e) {
       return Left(e);
     } catch (e) {
-      return Left(AuthCustomException());
+      return const Left(AuthCustomException());
     }
   }
 }

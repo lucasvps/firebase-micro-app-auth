@@ -21,7 +21,7 @@ class RegisterUsecase implements IRegisterUsecase {
     } on AuthCustomException catch (e) {
       return Left(e);
     } catch (e) {
-      return Left(AuthCustomException());
+      return const Left(AuthCustomException());
     }
   }
 }
