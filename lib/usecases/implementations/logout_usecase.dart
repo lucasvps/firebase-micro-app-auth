@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:get_it/get_it.dart';
+
 import '../../external/i_auth_repository.dart';
 import '../../utils/authentication.dart';
 import '../../utils/errors/auth_custom_exception.dart';
@@ -16,7 +17,7 @@ class LogoutUsecase implements ILogoutUsecase {
     } on AuthCustomException catch (e) {
       return Left(e);
     } catch (e) {
-      return const Left(AuthCustomException());
+      return Left(AuthCustomException());
     }
   }
 }

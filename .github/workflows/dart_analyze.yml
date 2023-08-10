@@ -1,0 +1,37 @@
+name: Dart CI
+
+on: [pull_request]
+
+jobs:
+  analyze_and_fix:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Faz o checkout do código do repositório
+      - uses: actions/checkout@v2
+
+      # Configura o SDK Dart
+      - name: Set up Dart SDK
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      # Instala as dependências do Dart e Flutter
+      - name: Install dependencies
+        run: pub get
+
+      # Roda o Dart Analyzer para verificar problemas
+      - name: Run Dart Analyzer
+        run: dart analyze
+
+      # Tentativa de correção automática de problemas
+      - name: Auto-fix issues
+        run: dart fix --apply
+
+      # Faz commit e push das correções, se houver
+      - name: Commit fixes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -am "Apply dart fixes" || echo "No changes to commit"
+          git push
