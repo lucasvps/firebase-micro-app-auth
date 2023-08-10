@@ -1,6 +1,10 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
+
+import 'package:dartz/dartz.dart';
 import 'package:get_it/get_it.dart';
+
+import 'package:micro_app_auth/usecases/interfaces/i_usecases.dart';
+
 import '../../../utils/success/success_models.dart';
 import '../../external/i_auth_repository.dart';
 import '../../utils/errors/auth_custom_exception.dart';
