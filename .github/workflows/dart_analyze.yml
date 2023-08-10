@@ -37,3 +37,5 @@ jobs:
           git config --local user.name "GitHub Action"
           git commit -am "Apply dart fixes" || echo "No changes to commit"
           git push origin ${{ github.head_ref }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
