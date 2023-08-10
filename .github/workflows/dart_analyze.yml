@@ -9,6 +9,8 @@ jobs:
     steps:
       # Faz o checkout do código do repositório
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
 
       # Configura o SDK Flutter
       - name: Setup Flutter
@@ -34,4 +36,4 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git commit -am "Apply dart fixes" || echo "No changes to commit"
-          git push
+          git push origin ${{ github.head_ref }}
