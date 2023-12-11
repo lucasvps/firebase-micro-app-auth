@@ -12,13 +12,13 @@ dependencies:
     sdk: flutter
 
   ##firebase
-  firebase_auth: 4.6.3
+  firebase_auth: 4.15.2
 
-  google_sign_in: 6.1.4
+  google_sign_in: 6.1.6
   sign_in_with_apple: 5.0.0
 
-  shared_preferences: 2.2.0
-  get_it: 7.6.0
+  shared_preferences: 2.2.2
+  get_it: 7.6.4
   mocktail: 0.3.0
   dartz: 0.10.1
   equatable: 2.0.5
