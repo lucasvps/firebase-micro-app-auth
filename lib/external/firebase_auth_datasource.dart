@@ -1,12 +1,16 @@
 import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+
 import '../../utils/authentication.dart';
 import '../utils/errors/auth_custom_exception.dart';
 import '../utils/success/success_models.dart';
+
 import 'i_auth_repository.dart';
 
 class FirebaseAuthDatasource implements IAuthRepository {
@@ -72,7 +76,7 @@ class FirebaseAuthDatasource implements IAuthRepository {
         assert(user.uid == currentUser!.uid);
 
         Authentication.saveToken(
-          await FirebaseAuth.instance.currentUser!.getIdToken(),
+          (await FirebaseAuth.instance.currentUser?.getIdToken()) ?? "",
         );
 
         return Right(LoginSuccess());
@@ -131,7 +135,7 @@ class FirebaseAuthDatasource implements IAuthRepository {
       FirebaseAuth.instance.currentUser?.reload();
 
       Authentication.saveToken(
-        await FirebaseAuth.instance.currentUser!.getIdToken(),
+        (await FirebaseAuth.instance.currentUser?.getIdToken()) ?? "",
       );
 
       final User? user = authResult.user;
@@ -143,7 +147,7 @@ class FirebaseAuthDatasource implements IAuthRepository {
         assert(user.uid == currentUser!.uid);
 
         Authentication.saveToken(
-          await FirebaseAuth.instance.currentUser!.getIdToken(),
+          (await FirebaseAuth.instance.currentUser?.getIdToken()) ?? "",
         );
 
         return Right(LoginSuccess());
